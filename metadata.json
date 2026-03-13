@@ -1,0 +1,7 @@
+{
+  "name": "GovTrack: Entity Inventory & Procurement",
+  "description": "A comprehensive government-owned entity inventory and procurement management system supporting workflows, asset tracking, and compliant document generation.",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}

@@ -1,0 +1,150 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GovTrack - Inventory & Procurement</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Inter', 'sans-serif'],
+              serif: ['"Playfair Display"', 'serif'],
+              mono: ['ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', "Liberation Mono", "Courier New", 'monospace'],
+            },
+            colors: {
+              gov: {
+                50: '#f0f9ff',
+                100: '#e0f2fe',
+                500: '#0ea5e9',
+                600: '#0284c7',
+                800: '#075985',
+                900: '#0c4a6e',
+              }
+            }
+          },
+        },
+      }
+    </script>
+    <style>
+      /* Screen Preview Styles */
+      .document-preview-wrapper {
+        background-color: #525659; /* Acrobat Reader grey background */
+        padding: 40px;
+        display: flex;
+        justify-content: center;
+        overflow: auto;
+      }
+
+      .printable-area {
+        background: white;
+        width: 210mm;
+        min-height: 297mm;
+        padding: 15mm;
+        margin: 0 auto;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        position: relative;
+        box-sizing: border-box;
+      }
+
+      /* Label Specific Style Override */
+      .printable-area.label-print {
+        width: 80mm;
+        min-height: auto;
+        padding: 5mm;
+      }
+
+      /* Print Styles for Official Documents */
+      @page {
+        size: auto;
+        margin: 0;
+      }
+
+      @media print {
+        body {
+          margin: 0;
+          padding: 0;
+          background: white;
+        }
+        
+        /* Hide everything by default */
+        body * {
+          visibility: hidden;
+        }
+
+        /* Show only the printable area */
+        .printable-area, .printable-area * {
+          visibility: visible;
+        }
+
+        .printable-area {
+          position: absolute;
+          left: 0;
+          top: 0;
+          width: 210mm !important;
+          height: 297mm !important; /* Force exact A4 height */
+          margin: 0 !important;
+          padding: 15mm !important; /* Safe print margin */
+          box-shadow: none !important;
+          overflow: hidden !important;
+          print-color-adjust: exact;
+          -webkit-print-color-adjust: exact;
+        }
+
+        /* Adjust labels for 80mm paper roll printers */
+        .printable-area.label-print {
+          width: 80mm !important;
+          height: auto !important;
+          min-height: auto !important;
+          padding: 2mm !important;
+          position: relative !important;
+        }
+
+        .no-print {
+          display: none !important;
+        }
+        
+        /* Specific label grid for Thermal/Roll Labels */
+        .label-grid {
+           display: grid !important;
+           grid-template-columns: 1fr !important; /* Single column for 80mm rolls */
+           gap: 2mm;
+           padding: 0 !important;
+        }
+
+        .label-item {
+           border: 1px dotted #ccc;
+           padding: 5px;
+           page-break-inside: avoid;
+           display: flex;
+           flex-direction: column;
+           align-items: center;
+           justify-content: center;
+           height: 40mm !important; /* Adjusted for 80mm roll clarity */
+           width: 100% !important;
+        }
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "lucide-react": "https://aistudiocdn.com/lucide-react@^0.554.0",
+    "react/": "https://aistudiocdn.com/react@^19.2.0/",
+    "react": "https://aistudiocdn.com/react@^19.2.0",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+    "recharts": "https://aistudiocdn.com/recharts@^3.5.0",
+    "react-qr-code": "https://esm.sh/react-qr-code@2.0.15",
+    "react-barcode": "https://esm.sh/react-barcode@1.5.3?external=react,react-dom",
+    "html5-qrcode": "https://esm.sh/html5-qrcode@2.3.8"
+  }
+}
+</script>
+</head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>
